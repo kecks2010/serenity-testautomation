@@ -44,11 +44,18 @@ Now the test automation is downloaded and if you got no problems, it should work
 
     mvn clean verify
 
-Maven starts the test automation headless and parallel with the Chrome browser on the default environment. To start the
-test automation for all tests with tag "test" with firefox on dev environment, you need the following Maven command:
+Maven starts the test automation headless and parallel with the Chrome browser on the default environment.
+
+To start the test automation for all test cases with tag "test" with firefox on dev environment,
+you need the following Maven command:
 
     mvn clean verify -Pdev -Denvironment=firefox -Dgroups="test"
 
 The result of the test run, you find the report under:
 
-    target/cucumber-reports/Cucumber.html
+    target/site/serenity/index.html
+
+To start only test cases with a specific tag and exclude test cases with another specific tag,
+you need the following Maven command:
+
+    mvn clean verify -Denvironment=firefox -Pdev -DexcludedGroups="Smoke" -Dgroups="Debug"

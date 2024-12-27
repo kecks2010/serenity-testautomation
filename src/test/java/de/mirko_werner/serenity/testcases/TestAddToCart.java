@@ -7,12 +7,13 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 
+@Tag("test")
 public class TestAddToCart extends TestMaster {
 
     @Steps
     AddToCardSteps addToCardSteps;
 
-    @Tag("ignore")
+    @Tag("Debug")
     @DisplayName("Add one product to the cart from home page")
     @Test
     public void testAddOneProductToCartFromHomePage() {
@@ -24,7 +25,8 @@ public class TestAddToCart extends TestMaster {
         addToCardSteps.theTotalPriceIs("$112.50");
     }
 
-    @Tag("test")
+    @Tag("Debug")
+    @Tag("Smoke")
     @DisplayName("Add one product to the cart from store page")
     @Test
     public void testAddOneProductToCartFromStorePage() {
