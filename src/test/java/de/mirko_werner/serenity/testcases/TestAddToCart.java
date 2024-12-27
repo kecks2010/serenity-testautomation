@@ -6,6 +6,8 @@ import net.serenitybdd.annotations.Steps;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.CsvSource;
 
 @Tag("test")
 public class TestAddToCart extends TestMaster {
@@ -15,14 +17,18 @@ public class TestAddToCart extends TestMaster {
 
     @Tag("Debug")
     @DisplayName("Add one product to the cart from home page")
-    @Test
-    public void testAddOneProductToCartFromHomePage() {
-        String productName = "Denim Blue Jeans";
-
+    @ParameterizedTest
+    @CsvSource({
+            "Denim Blue Jeans, 1, $100.00, $112.50"
+    })
+    public void testAddOneProductToCartFromHomePage(String productName,
+                                                    int quantity,
+                                                    String price,
+                                                    String totalPrice) {
         addToCardSteps.iMOnTheHomePage();
         addToCardSteps.iAddToTheCart(productName);
-        addToCardSteps.iSeeOneInTheCart(1, productName, "$100.00");
-        addToCardSteps.theTotalPriceIs("$112.50");
+        addToCardSteps.iSeeOneInTheCart(quantity, productName, price);
+        addToCardSteps.theTotalPriceIs(totalPrice);
     }
 
     @Tag("Debug")
